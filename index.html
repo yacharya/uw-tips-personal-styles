@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Personal Styles Inventory Test</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Include a viewport meta tag for responsiveness -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+    <!-- Introduction Screen -->
+    <div id="introScreen" class="container">
+        <div class="logo-container">
+            <img src="uw-tips.png" alt="App Logo" id="logo">
+        </div>
+        <h1>Welcome to the Personal Styles Inventory Test</h1>
+        <p>Discover your predominant and backup personal styles by selecting words that best describe you.</p>
+        <button id="beginButton">Begin Test</button>
+    </div>
+
+    <!-- Quiz Container -->
+    <div id="quizContainer" class="container hidden">
+        <div class="logo-container">
+            <!-- Replace 'logo.png' with the path to your logo image -->
+            <img src="uw-tips.png" alt="App Logo" id="logo">
+        </div>
+        <h1>Personal Styles Inventory Test</h1>
+        <!-- The question cards will be dynamically inserted here -->
+        <div id="questionCard"></div>
+        <!-- Navigation Buttons -->
+        <div class="navigation-buttons">
+            <button id="prevButton" disabled>Previous</button>
+            <button id="nextButton">Next</button>
+        </div>
+    </div>
+
+    <!-- Result Section -->
+    <div id="result" class="container hidden">
+        <div class="logo-container">
+            <!-- Replace 'logo.png' with the path to your logo image -->
+            <img src="uw-tips.png" alt="App Logo" id="logo">
+        </div>
+        <h2>Your Styles Scores</h2>
+        <canvas id="barChart" width="500" height="400"></canvas>
+        <p>The longest bar is your <i>predominant style</i>. The second longest bar is your <i>backup style</i></p>
+        <h3>Your Predominant Style: <p id="styleName"></p></h3>
+        <h3>Your Backup Style: <p id="backupStyleName"></p></h3>
+        <button id="explainButton">Explain My Styles</button>
+        <div id="styleDescriptions" class="hidden">
+            <h3>Style Descriptions:</h3>
+            <p id="predominantStyleDescription"></p>
+            <p id="backupStyleDescription"></p>
+        </div>
+        <button id="retakeButton">Retake Test</button>
+        <footer>
+            <p>Source: David Merrill & Roger Reid, <i>Personal Styles and Effective Performance</i></p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
