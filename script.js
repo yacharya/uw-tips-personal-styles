@@ -1,9 +1,7 @@
 // Define the questions and words
 const questions = [
-    ["Competitive", "Joyful", "Harmonious", "Considerate"],
+    ["Competitive", "Joyful", "Considerate",  "Harmonious"],
     ["Powerful", "Good mixer", "Easy on others", "Organized"],
-    ["Adventurous", "Creative", "Empathetic", "Determined"],
-    ["Optimistic", "Practical", "Flexible", "Reliable"],
     ["Bold", "Charming", "Loyal", "Easily Led"],
     ["Stubborn", "Attractive", "Sweet", "Avoids"],
     ["Argumentative", "Light-hearted", "Nonchalant", "Adaptable"],
