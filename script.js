@@ -27,11 +27,20 @@ const questions = [
 ];
 
 // Scoring arrays for each style
+/*
 const scoringArrays = {
     '1': [-0.5, 0, 1, 2, 2.25, 3, 3.5, 4, 4.5, 5, 5.5, 6, 7, 8, 9, 10, 11, 12,14, 16, 18],
     '2': [0, 0.5, 1, 2, 2.2, 2.75, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 8, 9, 10, 11, 12, 14, 16],
     '3': [-0.75, -0.5, 0, 1, 1.5, 1.75, 2, 3, 4, 4.5, 5, 6, 7, 7.5, 8, 9, 10, 12, 14 ,16],
     '4': [-0.5, 0, 0.5, 1, 2, 2.5, 3, 4, 4.5, 4.8, 5, 6, 6.5, 7, 7.5, 8, 9 ,10, 12, 14]
+};
+*/
+
+const scoringArrays = {
+    '1': [10, 15, 21, 30, 36, 43, 51, 57, 62, 68, 73, 80, 87, 90, 94, 97, 100, 103, 107],
+    '2': [4, 16, 20, 33, 41, 48, 58, 67, 72, 76, 81, 88, 95, 98, 102, 105, 108],
+    '3': [14, 21, 36, 42, 46, 60, 64, 69, 76, 81, 87, 90, 93, 96, 100, 103, 106],
+    '4': [10, 22, 31, 39, 45, 63, 66, 74, 81, 87, 93, 97, 100, 103, 107]
 };
 
 // Styles mapping
@@ -42,13 +51,16 @@ const stylesMap = {
     '4': 'Analytical'
 };
 
+//Commenting out the style description changes
 // Style descriptions
+/*
 const styleDescriptions = {
     'Analytical': 'Analytical individuals are constantly analyzing, looking for pros and cons and asking questions. They may be brilliant at generating ideas or solving problems, but they may also over-analyze and get stuck in “analysis paralysis”.',
     'Driver': 'Drivers are often strong personalities who are motivated and sometimes forceful in their efforts to reach their goals. They often take the lead and are quick to action. They may come across as dominant and brash.',
     'Expressive': 'Expressive people are sociable, talkative and comfortable with others. They are great at communicating and enthusing others, but are not always great at actual delivery of tasks.',
     'Amiable': 'Amiable people are calm, relaxed, hard to excite and will generally go out of their way not to upset others. They tend to want harmony, but at times this desire and some of their other traits can lead others to think they are indifferent.'
 };
+*/
 
 // Global variables
 let counts = {
@@ -209,14 +221,14 @@ function drawBarChart(scores) {
 
     const labels = ['Driver', 'Expressive', 'Amiable', 'Analytical'];
     const data = [scores['1'], scores['2'], scores['3'], scores['4']];
-    const colors = ['#6a0dad', '#0000ff', '#9c27b0', '#2196f3']; // Purple and Blue shades
+    const colors = ['#3498db', '#2ecc71', '#e74c3c', '#9b59b6']; //Contrasting colors - changed from Purple and Blue shades
 
     // Find the maximum score for scaling
     const maxScore = Math.max(...data);
 
     // Bar chart settings
-    const barWidth = 50;
-    const gap = 20;
+    const barWidth = 47.5; //Decreased bar graph width
+    const gap = 40; //Increase gap between bar graphs
     const chartHeight = canvas.height - 70; // Leave space for labels and scale
 
     // Scaling factor
@@ -225,11 +237,12 @@ function drawBarChart(scores) {
     // Draw Y-axis scale and grid lines
     const numYLabels = 5;
     ctx.fillStyle = '#000';
-    ctx.font = '12px Arial';
+    ctx.font = '12px Poppins';
     for (let i = 0; i <= numYLabels; i++) {
         const y = chartHeight - (chartHeight / numYLabels) * i + 20;
-        const value = (maxScore / numYLabels) * i;
-        ctx.fillText(value.toFixed(1), 10, y);
+        //const value = (maxScore / numYLabels) * i;
+        //ctx.fillText(value.toFixed(1), 10, y);
+
         // Draw horizontal grid lines
         ctx.beginPath();
         ctx.moveTo(40, y - 5);
@@ -241,7 +254,7 @@ function drawBarChart(scores) {
     // Draw bars
     data.forEach((score, index) => {
         const barHeight = score * scale;
-        const x = index * (barWidth + gap) + 60;
+        const x = index * (barWidth + gap) + 100;
         const y = canvas.height - barHeight - 50;
 
         // Draw bar
@@ -249,21 +262,22 @@ function drawBarChart(scores) {
         ctx.fillRect(x, y, barWidth, barHeight);
 
         // Draw score value
-        ctx.fillStyle = '#000';
-        ctx.font = '14px Arial';
-        ctx.fillText(score.toFixed(2), x + barWidth / 4, y - 10);
+        //ctx.fillStyle = '#000';
+        //ctx.font = '14px Arial';
+        //ctx.fillText(score.toFixed(2), x + barWidth / 4, y - 10);
     });
 
     // Draw X-axis labels
     labels.forEach((label, index) => {
-        const x = index * (barWidth + gap) + 60;
+        const x = index * (barWidth + gap) + 100;
         ctx.fillStyle = '#000';
-        ctx.font = '14px Arial';
-        ctx.fillText(label, x + barWidth / 4 - 15, canvas.height - 20);
+        ctx.font = '14px Poppins';
+        ctx.fillText(label, x + barWidth / 4 - 15, canvas.height - 30);
     });
 
     // Draw legend
-    const legendX = canvas.width - 150;
+    /*
+    const legendX = canvas.width - 130;
     const legendY = 20;
     labels.forEach((label, index) => {
         // Draw color box
@@ -275,6 +289,7 @@ function drawBarChart(scores) {
         ctx.font = '14px Arial';
         ctx.fillText(label, legendX + 20, legendY + 12 + index * 25);
     });
+    */
 }
 
 // Function to reset the quiz
@@ -291,8 +306,11 @@ function retakeQuiz() {
     document.getElementById('quizContainer').classList.remove('hidden');
     // Hide the result section
     document.getElementById('result').classList.add('hidden');
+
+    /*
     // Hide style descriptions
     document.getElementById('styleDescriptions').classList.add('hidden');
+    */
 
     // Render the first question
     renderQuestionCard(currentQuestionIndex);
@@ -309,6 +327,7 @@ function startQuiz() {
 }
 
 // Function to show style descriptions
+/*
 function showStyleDescriptions() {
     const predominantStyleDesc = styleDescriptions[window.predominantStyle];
     const backupStyleDesc = styleDescriptions[window.backupStyle];
@@ -319,6 +338,7 @@ function showStyleDescriptions() {
     // Show the style descriptions
     document.getElementById('styleDescriptions').classList.remove('hidden');
 }
+*/
 
 /*
 function toggleStyleDescriptions() {
@@ -353,8 +373,10 @@ document.getElementById('retakeButton').addEventListener('click', retakeQuiz);
 // Add event listener for beginning the quiz
 document.getElementById('beginButton').addEventListener('click', startQuiz);
 
+/*
 // Add event listener for explaining styles
 document.getElementById('explainButton').addEventListener('click', showStyleDescriptions);
+*/
 
 /*
 document.getElementById('explainButton').addEventListener('click', toggleStyleDescriptions);
