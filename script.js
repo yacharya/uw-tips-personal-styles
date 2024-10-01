@@ -6,7 +6,6 @@ const questions = [
     ["Stubborn", "Attractive", "Sweet", "Avoids"],
     ["Argumentative", "Light-hearted", "Nonchalant", "Adaptable"],
     ["Forceful", "Admirable", "Kind", "Non-resisting"],
-    
     ["Tries new ideas", "Optimistic", "Wants to please", "Respectful"],
     ["Restless", "Popular", "Neighbourly", "Abides by rules"],
     ["Outspoken", "Companionable", "Restrained", "Accurate"],
