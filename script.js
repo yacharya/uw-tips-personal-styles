@@ -6,6 +6,7 @@ const questions = [
     ["Stubborn", "Attractive", "Sweet", "Avoids"],
     ["Argumentative", "Light-hearted", "Nonchalant", "Adaptable"],
     ["Forceful", "Admirable", "Kind", "Non-resisting"],
+    
     ["Tries new ideas", "Optimistic", "Wants to please", "Respectful"],
     ["Restless", "Popular", "Neighbourly", "Abides by rules"],
     ["Outspoken", "Companionable", "Restrained", "Accurate"],
@@ -221,7 +222,7 @@ function drawBarChart(scores) {
 
     const labels = ['Driver', 'Expressive', 'Amiable', 'Analytical'];
     const data = [scores['1'], scores['2'], scores['3'], scores['4']];
-    const colors = ['#3498db', '#2ecc71', '#e74c3c', '#9b59b6']; //Contrasting colors - changed from Purple and Blue shades
+    const colors = ['#e74c3c', '#9b59b6', '#3498db', '#2ecc71']; //Contrasting colors - changed from Purple and Blue shades
 
     // Find the maximum score for scaling
     const maxScore = Math.max(...data);
