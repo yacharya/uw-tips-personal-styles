@@ -81,7 +81,12 @@ let userSelections = {};
 // Function to render a question card
 function renderQuestionCard(index) {
     const questionCard = document.getElementById('questionCard');
+    const progressBar = document.getElementById("progressBar"); // Updated ID
     questionCard.innerHTML = ''; // Clear previous content
+
+    // Update progress bar
+    const progress = ((index + 1) / questions.length) * 100;
+    progressBar.value = progress;
 
     const words = questions[index];
 
@@ -125,6 +130,13 @@ function renderQuestionCard(index) {
     updateNavigationButtons();
 }
 
+// Update the progress bar based on the current question index
+function updateProgressBar() {
+    const progressBar = document.getElementById("progressBar"); // Updated ID
+    const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
+    progressBar.value = progress;
+}
+
 // Function to update navigation buttons
 function updateNavigationButtons() {
     const prevButton = document.getElementById('prevButton');
@@ -160,9 +172,12 @@ function handleNavigation(event) {
         }
 
         currentQuestionIndex++;
+        updateProgressBar();
         renderQuestionCard(currentQuestionIndex);
+
     } else if (action === 'prevButton') {
         currentQuestionIndex--;
+        updateProgressBar();
         renderQuestionCard(currentQuestionIndex);
     }
 }
@@ -322,6 +337,11 @@ function startQuiz() {
     document.getElementById('introScreen').classList.add('hidden');
     // Show the quiz container
     document.getElementById('quizContainer').classList.remove('hidden');
+
+    // Initialize progress bar to first question
+    const progressBar = document.getElementById("progressBar");
+    progressBar.value = (1 / questions.length) * 100;
+
     // Render the first question
     renderQuestionCard(currentQuestionIndex);
 }
@@ -365,6 +385,7 @@ function toggleStyleDescriptions() {
 
 // Add event listeners for navigation buttons
 document.getElementById('prevButton').addEventListener('click', handleNavigation);
+
 document.getElementById('nextButton').addEventListener('click', handleNavigation);
 
 // Add event listener for retaking the quiz
@@ -372,7 +393,6 @@ document.getElementById('retakeButton').addEventListener('click', retakeQuiz);
 
 // Add event listener for beginning the quiz
 document.getElementById('beginButton').addEventListener('click', startQuiz);
-
 /*
 // Add event listener for explaining styles
 document.getElementById('explainButton').addEventListener('click', showStyleDescriptions);
